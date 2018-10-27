@@ -72,8 +72,9 @@ class LQR():
         f : float in [N]
             input of the system
         """
-        state = np.array([pendulum.z, pendulum.th, pendulum.v_z, pendulum.v_th])
-        f = - self.K * state.T
+        
+        state = np.array([[pendulum.z], [pendulum.th], [pendulum.v_z], [pendulum.v_th]])
+        f = - np.dot(self.K, state)
 
         return f
         
