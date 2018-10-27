@@ -2,26 +2,28 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from simulator import SinglePendulum
-from animation import Anim
+from simulator import SinglePendulumWithCart
+from controller import LQR
+from anim_drawer import AnimDrawer
+from fig_drawer import FigDrawer
 
 def main():
     
-    pendulum = SinglePendulum(init_th=0.1)
-    anim = Anim
+    pendulum = SinglePendulumWithCart(init_th=0.01)
     
-    # controller = SDRE()
+    controller = LQR(pendulum)
 
-    simulation_time = 10000
+    simulation_time = 2000
 
-    for t in range(simulation_time):
+    for _ in range(simulation_time):
+        f = controller.calc_input(pendulum)
+        pendulum.update_state(input_f=f, dt=0.01)
 
-        # opt_f = controller.calc_input(pendulum.state)
-        
-        pendulum.update_state(input_f=0.0)
+    anim = AnimDrawer(pendulum)
+    anim.draw_anim(interval=10)
     
-    anim.write_anim
-    
+    fig = FigDrawer(pendulum)
+    fig.draw_fig(dt=0.01)
 
 if __name__ == '__main__':
     main()
