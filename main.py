@@ -3,13 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from simulator import SinglePendulumWithCart
-from controller import LQR
+from controllers.LQR import LQR
 from anim_drawer import AnimDrawer
 from fig_drawer import FigDrawer
 
 def main():
     
-    pendulum = SinglePendulumWithCart(init_th=1.0)
+    pendulum = SinglePendulumWithCart(init_th=0.1)
     
     controller = LQR(pendulum)
 
