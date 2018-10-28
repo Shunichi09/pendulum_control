@@ -9,7 +9,7 @@ from fig_drawer import FigDrawer
 
 def main():
     
-    pendulum = SinglePendulumWithCart(init_th=0.1)
+    pendulum = SinglePendulumWithCart(init_th=1.0)
     
     controller = LQR(pendulum)
 
@@ -17,6 +17,7 @@ def main():
 
     for _ in range(simulation_time):
         f = controller.calc_input(pendulum)
+        f[0, 0] = 0.0
         pendulum.update_state(input_f=f[0, 0], dt=0.01)
 
     anim = AnimDrawer(pendulum)
