@@ -1,5 +1,5 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
+[![Documentation Status](https://travis-ci.org/Shunichi09/pendulum_control.svg?branch=master)
 
 # pendulum_control
 This repository is about controlling pendulum with cart. We use control method based on LQR theory and Learning theory
