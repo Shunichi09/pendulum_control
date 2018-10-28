@@ -4,7 +4,7 @@
 # pendulum_control
 This repository is about controlling pendulum with cart. We use control method based on LQR theory and Learning theory
 
-![result](https://github.com/Shunichi09/pendulum_control/demo_gifs/pendulum_1.gif)
+![original_simulation](https://github.com/Shunichi09/pendulum_control/blob/demo_gifs/pendulum_1.gif)
 
 # DEMO
 - LQR
