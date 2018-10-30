@@ -1,6 +1,7 @@
 # pendulum simulator
 import numpy as np
 import math
+from common.math import fit_angle_in_rad_range
 
 class SinglePendulumWithCart():
     """
@@ -56,10 +57,10 @@ class SinglePendulumWithCart():
         # Parameters
         self.p_m = 2. # pendulum mass
         self.p_l = 0.5 # pendulum length, especially the length from origin to center gravity position( 0.4 / 2 )
-        self.p_j = 3.2 * 10e-4 # pendulum inertia
+        self.p_j = 3.2 * 10e-2 # pendulum inertia
         self.p_mu = 27.41 * 10e-6 # viscous resistance coefficient of pendulum
 
-        self.c_m = 100. # cart mass
+        self.c_m = 10. # cart mass
         self.c_mu = 27.41 * 10e-6 # viscous resistance coefficient of cart
         self.c_width = 0.25
         self.c_height = 0.1
@@ -117,12 +118,14 @@ class SinglePendulumWithCart():
         self.v_z += (k0[2] + 2 * k1[2] + 2 * k2[2] + k3[2]) / 6.0
         self.v_th += (k0[3] + 2 * k1[3] + 2 * k2[3] + k3[3]) / 6.0
 
-        variables = [self.z, self.th, self.v_z, self.v_th]
-        histories = [self.history_z, self.history_th, self.history_v_z, self.history_v_th]
+        # self.th, = fit_angle_in_rad_range([self.th])
+
+        variables = [self.z, self.th, self.v_z, self.v_th, input_f]
+        histories = [self.history_z, self.history_th, self.history_v_z, self.history_v_th, self.history_input_f]
 
         for i, variable in enumerate(variables):
             histories[i].append(variable)
-
+        
         # print('z = {0}'.format(self.z))
         # print('th = {0}'.format(self.th))
         # print('v_z = {0}'.format(self.v_z))

@@ -85,9 +85,10 @@ class AnimDrawer():
         self.axis.set_aspect('equal', adjustable='box')
 
         # (2) set the xlim and ylim
-        max_x = 2.5
-        min_x = -2.5
-        max_y = 1.0 
+        margin = 1.0
+        max_x = np.max(self.pendulum.history_z) + margin
+        min_x = np.min(self.pendulum.history_z) - margin
+        max_y = 1.25
         min_y = -0.5
         
         self.axis.set_xlim(min_x, max_x)
@@ -103,9 +104,9 @@ class AnimDrawer():
             
         """
         # pendulum img
-        p_color_list = ["b"]
+        p_color_list = ["m"]
 
-        temp_img, = self.axis.plot([], [], color=p_color_list[0], linewidth=5)
+        temp_img, = self.axis.plot([], [], color=p_color_list[0], linewidth=2.5)
         self.p_imgs.append(temp_img)
     
         # cart imgs

@@ -38,13 +38,15 @@ class FigDrawer():
     input_f_axis : axis of matplotlib
         this axis shows the u_vs
     """
-    def __init__(self, pendulum):
+    def __init__(self, pendulum, controller):
         """
         Parameters
         ------------
         pendulum : SinglePendulumWithCart class
+        controller : controller class
         """
         self.pendulum = pendulum
+        self.controller = controller
 
         # setting up figure
         self.time_history_fig = plt.figure(dpi=100)
@@ -98,7 +100,7 @@ class FigDrawer():
         """plot the data
         """
         self._draw_time_history()
-        # self._draw_input()
+        self._draw_input()
 
         plt.show()
     

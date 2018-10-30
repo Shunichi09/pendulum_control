@@ -76,13 +76,13 @@ class SDRE():
         """
 
         M = np.array([[pendulum.c_m + pendulum.p_m , pendulum.p_m * pendulum.p_l * math.cos(pendulum.th)],
-                           [pendulum.p_m * pendulum.p_l * math.cos(pendulum.th), pendulum.p_j + pendulum.p_m * (pendulum.p_l**2.0)]])
+                      [pendulum.p_m * pendulum.p_l * math.cos(pendulum.th), pendulum.p_j + pendulum.p_m * (pendulum.p_l**2.0)]])
         
         N = np.array([[-pendulum.p_m * pendulum.p_l * math.sin(pendulum.th) * pendulum.v_th + pendulum.c_mu, 0.0], 
-                           [pendulum.p_mu,                                                                        0.0 ]])
+                      [pendulum.p_mu, 0.0 ]])
         
         G = np.array([[0.0, 0.0],
-                      [0.0, self._h(pendulum.th)]])
+                      [0.0, -pendulum.g * pendulum.p_m * pendulum.p_l * self._h(pendulum.th)]])
 
         L = np.array([[1.0], [0.0]])
 
@@ -99,18 +99,18 @@ class SDRE():
         pendulum : pendulunm class
         """
 
-        self.R = 2.0
-        self.Q[0, 0] = 1.0
-        self.Q[1, 1] = 1.0 + (5000.0 / (1 + math.exp(10.0 * (abs(pendulum.th) - math.pi/9.0))))
-        self.Q[2, 2] = 1.0
-        self.Q[3, 3] = 1.0 + (5000.0 / (1 + math.exp(10.0 * (abs(pendulum.th) - math.pi/9.0))))
+        self.R = 100.0 # + 10000.0 / (1.0 + math.exp(100.0*((abs(pendulum.th)-0.1))))
+        self.Q[0, 0] = 45.0 # + 10000.0 / (1.0 + math.exp(-100.0*((abs(pendulum.z)-2.5))))
+        self.Q[1, 1] = 1.0 # + 10000.0 / (1.0 + math.exp(100.0*((abs(pendulum.th)-0.1))))
+        self.Q[2, 2] = 1.0 # + 10000.0 / (1.0 + math.exp(100.0*((abs(pendulum.th)-0.1))))
+        self.Q[3, 3] = 1.0
 
     def _h(self, th):
         """
         calclating h function
         """
 
-        threshold = 0.001
+        threshold = 0.01
 
         if th < threshold:
             y = 1.0
@@ -121,3 +121,4 @@ class SDRE():
             y = temp1 / temp2
 
         return y
+

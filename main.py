@@ -25,17 +25,22 @@ def main():
     else:
         raise ValueError("you should chose controller from LQR , SDRE!!")
 
-    simulation_time = 2000
+    simulation_time = 5000
 
-    for _ in range(simulation_time):
+    for step in range(simulation_time):
         f = controller.calc_input(pendulum)
         # f[0, 0] = 0.0
+        """
+        if step == 1000:
+            f[0, 0] = 100.0
+        """
+        
         pendulum.update_state(input_f=f[0, 0], dt=0.01)
 
     anim = AnimDrawer(pendulum)
     anim.draw_anim(interval=10)
     
-    fig = FigDrawer(pendulum)
+    fig = FigDrawer(pendulum, controller)
     fig.draw_fig(dt=0.01)
 
 if __name__ == '__main__':
