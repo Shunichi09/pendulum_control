@@ -150,7 +150,6 @@ class SinglePendulumWithCart():
         """
 
         y = v_z
-
         return y
 
     def  _func_th(self, z, th, v_z, v_th, input_f):
@@ -246,8 +245,6 @@ class SinglePendulumWithCart():
         y = temp_y / alpha
 
         return y 
-
-
 
 # memo
     """

@@ -4,14 +4,26 @@ import matplotlib.pyplot as plt
 
 from simulator import SinglePendulumWithCart
 from controllers.LQR import LQR
+from controllers.SDRE import SDRE
 from anim_drawer import AnimDrawer
 from fig_drawer import FigDrawer
 
 def main():
-    
-    pendulum = SinglePendulumWithCart(init_th=0.05)
-    
-    controller = LQR(pendulum)
+    print("please set initial state of pendulum angle theta (cart position z is always 0.0)")
+
+    th = float(input())
+
+    pendulum = SinglePendulumWithCart(init_th=th)
+
+    print("please chose controller ! you can chose [LQR], [SDRE]")
+    controller = input()
+
+    if controller == "LQR":
+        controller = LQR(pendulum)
+    elif controller == "SDRE":
+        controller = SDRE(pendulum) 
+    else:
+        raise ValueError("you should chose controller from LQR , SDRE!!")
 
     simulation_time = 2000
 
