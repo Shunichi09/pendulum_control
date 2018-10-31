@@ -3,17 +3,18 @@
 # pendulum_control
 This repository is about controlling pendulum with cart. We use control method based on LQR theory and Learning theory
 
-![original_simulation](https://github.com/Shunichi09/pendulum_control/blob/demo_gifs/pendulum_1.gif)
+![original_simulation](https://github.com/Shunichi09/pendulum_control/blob/demo_gifs/pendulum_2.gif)
 
 # DEMO
 - LQR
+![LQR](https://github.com/Shunichi09/pendulum_control/blob/demo_gifs/pendulum_3.gif)
 
+- SDRE
+![SDRE](https://github.com/Shunichi09/pendulum_control/blob/demo_gifs/pendulum_1.gif)
 
 # Problem formulation
 We set the problem as controlling the pendulum with the cart.
 The motion equation of the problem is as following.
-
-
 
 The parameters are 
 
@@ -56,6 +57,7 @@ $ python main.py
 You can chose the control methods from following methods
 
 - LQR
+- SDRE
 
 # Requirement
 You should install following software
