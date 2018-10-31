@@ -67,8 +67,8 @@ class AnimDrawer():
         if shuold_save_animation: 
             print('animation_number?')
             num = int(input())
-            # animation.save('pendulum_{0}.mp4'.format(num), writer='ffmpeg')
-            animation.save("pendulum_simu.gif", writer = 'imagemagick') # gif保存
+            animation.save('pendulum_{0}.mp4'.format(num), writer='ffmpeg')
+            # animation.save("pendulum_simu.gif", writer = 'imagemagick') # gif保存
 
         plt.show()
 

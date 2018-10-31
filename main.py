@@ -25,7 +25,7 @@ def main():
     else:
         raise ValueError("you should chose controller from LQR , SDRE!!")
 
-    simulation_time = 5000
+    simulation_time = 1000
 
     for step in range(simulation_time):
         f = controller.calc_input(pendulum)

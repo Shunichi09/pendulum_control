@@ -119,6 +119,7 @@ class SinglePendulumWithCart():
         self.v_th += (k0[3] + 2 * k1[3] + 2 * k2[3] + k3[3]) / 6.0
 
         # self.th, = fit_angle_in_rad_range([self.th])
+        # self.th = abs(self.th)
 
         variables = [self.z, self.th, self.v_z, self.v_th, input_f]
         histories = [self.history_z, self.history_th, self.history_v_z, self.history_v_th, self.history_input_f]
