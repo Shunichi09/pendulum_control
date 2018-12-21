@@ -99,11 +99,11 @@ class SDRE():
         pendulum : pendulunm class
         """
 
-        self.R = 10.0 # + 10000.0 / (1.0 + math.exp(100.0*((abs(pendulum.th)-0.1))))
-        self.Q[0, 0] = 45.0 + 10000.0 / (1.0 + math.exp(-100.0*((abs(pendulum.z)-2.5))))
-        self.Q[1, 1] = 1.0 # + 10000.0 / (1.0 + math.exp(100.0*((abs(pendulum.th)-0.1))))
-        self.Q[2, 2] = 1.0 # + 10000.0 / (1.0 + math.exp(100.0*((abs(pendulum.th)-0.1))))
-        self.Q[3, 3] = 1.0
+        self.R = 5.0 # + 10000.0 / (1.0 + math.exp(100.0*((abs(pendulum.th)-0.1))))
+        self.Q[0, 0] = 7.0  # + 10000.0 / (1.0 + math.exp(-100.0*((abs(pendulum.z)-2.5))))
+        self.Q[1, 1] = 10.0 # + 10000.0 / (1.0 + math.exp(100.0*((abs(pendulum.th)-0.1))))
+        self.Q[2, 2] = 0.01 # + 10000.0 / (1.0 + math.exp(100.0*((abs(pendulum.th)-0.1))))
+        self.Q[3, 3] = 0.01
 
     def _h(self, th):
         """

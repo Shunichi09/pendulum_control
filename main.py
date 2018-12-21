@@ -1,6 +1,7 @@
 # main program of pendulum control
 import numpy as np
 import matplotlib.pyplot as plt
+import math
 
 from simulator import SinglePendulumWithCart
 from controllers.LQR import LQR
@@ -13,7 +14,7 @@ def main():
 
     th = float(input())
 
-    pendulum = SinglePendulumWithCart(init_th=th)
+    pendulum = SinglePendulumWithCart(init_z=-0.1, init_th=math.pi/2. - 0.2, init_v_th= 0.1)
 
     print("please chose controller ! you can chose [LQR], [SDRE]")
     controller = input()
