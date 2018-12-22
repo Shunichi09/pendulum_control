@@ -37,6 +37,8 @@ class AnimDrawer():
         """
         self.pendulum = pendulum
 
+        self.anim_param = 1
+
         # setting up figure
         self.anim_fig = plt.figure(dpi=150)
         self.axis = self.anim_fig.add_subplot(111)
@@ -58,13 +60,19 @@ class AnimDrawer():
         self._set_axis()
         self._set_img()
 
-        animation = ani.FuncAnimation(self.anim_fig, self._update_anim, interval=interval, frames=len(self.pendulum.history_z)-1)
-
         # self.axis.legend()
         print('save_animation?')
-        shuold_save_animation = int(input())
+        self.shuold_save_animation = int(input())
 
-        if shuold_save_animation: 
+
+        if self.shuold_save_animation:
+            framenum = int(len(self.pendulum.history_z)-1 / self.anim_param)
+            animation = ani.FuncAnimation(self.anim_fig, self._update_anim, interval=interval * self.anim_param, frames=framenum)            
+        else:
+            animation = ani.FuncAnimation(self.anim_fig, self._update_anim, interval=interval, frames=len(self.pendulum.history_z)-1)
+
+
+        if self.shuold_save_animation: 
             print('animation_number?')
             num = int(input())
             animation.save('pendulum_{0}.mp4'.format(num), writer='ffmpeg')
@@ -133,8 +141,12 @@ class AnimDrawer():
         c_imgs : list of img
             this list is including 3 imgs
         """
-        self._draw_pendulum(i)
-        self._draw_cart(i)
+        if self.shuold_save_animation:
+            self._draw_pendulum(int(i * self.anim_param))
+            self._draw_cart(int(i * self.anim_param))
+        else:
+            self._draw_pendulum(i)
+            self._draw_cart(i)
         
         return self.p_imgs, self.c_imgs
     

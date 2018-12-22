@@ -14,7 +14,9 @@ def main():
 
     th = float(input())
 
-    pendulum = SinglePendulumWithCart(init_z=-0.1, init_th=math.pi/2. - 0.2, init_v_th= 0.1)
+    # pendulum = SinglePendulumWithCart(init_z=-0.1, init_th= -20. * math.pi / 180., init_v_th= 50. * math.pi / 180.)
+
+    pendulum = SinglePendulumWithCart(init_z=-0.5, init_th= th, init_v_th= -100. * math.pi / 180.)
 
     print("please chose controller ! you can chose [LQR], [SDRE]")
     controller = input()
@@ -26,10 +28,24 @@ def main():
     else:
         raise ValueError("you should chose controller from LQR , SDRE!!")
 
-    simulation_time = 1000
+    simulation_time = 2000
+    sampling_time = 0.01
+
+    reference_z_history = []
 
     for step in range(simulation_time):
-        f = controller.calc_input(pendulum)
+        
+        time = step * sampling_time
+        """
+        T = 10.0
+        reference_z = 0.2 * math.sin((2 * math.pi) / T * time)
+        reference_z_history.append(reference_z)
+        """
+
+        reference_z = None
+
+        f = controller.calc_input(pendulum, reference_z)
+
         # f[0, 0] = 0.0
         """
         if step == 1000:
@@ -40,6 +56,9 @@ def main():
 
     anim = AnimDrawer(pendulum)
     anim.draw_anim(interval=10)
+
+    # plt.plot(range(len(reference_z_history)), reference_z_history)
+    # plt.show()
     
     fig = FigDrawer(pendulum, controller)
     fig.draw_fig(dt=0.01)

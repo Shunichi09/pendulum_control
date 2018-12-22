@@ -55,13 +55,13 @@ class LQR():
         self.C = np.array([[1.0, 0.0, 0.0, 0.0], 
                            [0.0, 1.0, 0.0, 0.0]])
 
-        self.R = 5.0
+        self.R = 100.0
 
         self.Q = np.diag([10, 10, 10, 10])
 
         self.K, self.P, self.e = lqr(self.A, self.B, self.Q, self.R)
 
-    def calc_input(self, pendulum):
+    def calc_input(self, pendulum, reference_z=None):
         """
         Parameters
         -------------

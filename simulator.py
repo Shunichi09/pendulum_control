@@ -56,8 +56,8 @@ class SinglePendulumWithCart():
 
         # Parameters
         self.p_m = 0.23 # pendulum mass
-        self.p_l = 0.6096 # pendulum length, especially the length from origin to center gravity position( 0.4 / 2 )
-        self.p_j = 3.2 * 10e-2 # pendulum inertia
+        self.p_l = 0.3096 # pendulum length, especially the length from origin to center gravity position( 0.4 / 2 )
+        self.p_j = self.p_m * (self.p_l ** 2) / 3. # pendulum inertia
         self.p_mu = 27.41 * 10e-6 # viscous resistance coefficient of pendulum
 
         self.c_m = 0.94 # cart mass
